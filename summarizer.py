@@ -3,14 +3,17 @@ Class that summarizes a large body of text. It does this by loading a large body
 over the CDN, and then breaks it up into 'decently' sized chunks that can be encoded by ChatGPT,
 and then combining those summaries together.
 """
-from openai_config import openai
 import tiktoken
+import prompts
+from OpenAIRequestClient import OpenAIRequestClient
+import asyncio
 
 
 class Summarizer:
     def __init__(self, max_encoding_length=2000):
         self.max_encoding_length = max_encoding_length
         self.token_encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
+        self.request_client = OpenAIRequestClient()
 
     def load_text_from_file(self, file_name):
         """
@@ -21,24 +24,33 @@ class Summarizer:
         paragraphs = [r.replace("\n", " ") for r in text.read().split("\n\n")]
         self.paragraphs = paragraphs
 
-    def summarize(self):
+    async def summarize(self):
         if not self.paragraphs:
             raise Exception("No paragraphs to summarize!")
 
         contexts = self.__group_paragraphs()
+        requests = []
         for context in contexts:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "You are a summarization service for an educational system. Your job is to give me a summary of the given text, making sure to include all relevant details, but at the same time, trying to keep it concise",
-                    },
-                    {"role": "user", "content": context},
-                ],
+            requests.append(
+                {
+                    "model": "gpt-3.5-turbo",
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": prompts.SUMMARIZE,
+                        },
+                        {"role": "user", "content": context},
+                    ],
+                }
             )
 
-            print(response)
+        responses = await self.request_client.make_concurrent_requests(requests)
+        contents = []
+        for response in responses:
+            contents.append(response["choices"][0]["message"]["content"])
+
+        complete_summary = "\n\n".join(contents)
+        return complete_summary
 
     def __group_paragraphs(self):
         """
@@ -64,12 +76,11 @@ class Summarizer:
         contexts = []
         for group in groups:
             contexts.append(" ".join(group))
-            print(" ".join(group))
-            print("\n\n")
 
         return contexts
 
 
-summarizer = Summarizer()
-summarizer.load_text_from_file("./sample_text.txt")
-summarizer.summarize()
+if __name__ == "__main__":
+    summarizer = Summarizer()
+    summarizer.load_text_from_file("./sample_text_history.txt")
+    asyncio.run(summarizer.summarize())

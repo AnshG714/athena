@@ -40,6 +40,7 @@ class OpenAIRequestClient:
 
 
 if __name__ == "__main__":
+    # test script
     request = {
         "model": "gpt-3.5-turbo",
         "messages": [
