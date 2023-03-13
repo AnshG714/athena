@@ -1,15 +1,14 @@
 """
-Class that summarizes a large body of text. It does this by loading a large body of text 
-from a file, and then breaks it up into 'decently' sized chunks that can be encoded by ChatGPT,
-and then combining those summaries together.
+Used for extracting timelines from a history context. 
 """
 import tiktoken
 import prompts
 from OpenAIRequestClient import OpenAIRequestClient
 import asyncio
+import json
 
 
-class Summarizer:
+class TimelineExtractor:
     def __init__(self, max_encoding_length=2000):
         self.max_encoding_length = max_encoding_length
         self.token_encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
@@ -24,15 +23,7 @@ class Summarizer:
         paragraphs = [r.replace("\n", " ") for r in text.read().split("\n\n")]
         self.paragraphs = paragraphs
 
-    async def summarize(self):
-        """
-        Summarizes the content of the file loaded into the summarizer. It does this by loading
-        up chunks of the text and using the OpenAI ChatGPT API to get summaries. The summaries
-        are then collated.
-        """
-        if not self.paragraphs:
-            raise Exception("No paragraphs to summarize!")
-
+    async def generate_timeline(self):
         contexts = self.__group_paragraphs()
         requests = []
         for context in contexts:
@@ -42,7 +33,7 @@ class Summarizer:
                     "messages": [
                         {
                             "role": "system",
-                            "content": prompts.SUMMARIZE,
+                            "content": prompts.GENERATE_TIMELINE,
                         },
                         {"role": "user", "content": context},
                     ],
@@ -50,12 +41,12 @@ class Summarizer:
             )
 
         responses = await self.request_client.make_concurrent_requests(requests)
-        contents = []
+        timeline = []
         for response in responses:
-            contents.append(response["choices"][0]["message"]["content"])
+            json_str = response["choices"][0]["message"]["content"]
+            timeline += json.loads(json_str)
 
-        complete_summary = "\n\n".join(contents)
-        return complete_summary
+        return timeline
 
     def __group_paragraphs(self):
         """
@@ -86,6 +77,6 @@ class Summarizer:
 
 
 if __name__ == "__main__":
-    summarizer = Summarizer()
-    summarizer.load_text_from_file("./sample_text_history.txt")
-    asyncio.run(summarizer.summarize())
+    timeline_generator = TimelineExtractor()
+    timeline_generator.load_text_from_file("./sample_text_history.txt")
+    asyncio.run(timeline_generator.generate_timeline())
