@@ -6,6 +6,11 @@ import asyncio
 app = Flask(__name__)
 
 
+@app.get("/")
+def index():
+    return "Hello!!"
+
+
 @app.post("/api/v1/history/")
 async def gen_history_content():
     body = request.json
