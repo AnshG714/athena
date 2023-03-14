@@ -4,6 +4,9 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
+import Carousel from "react-bootstrap/Carousel";
+
+import background from "./images/background.jpg";
 
 const HISTORY_SOURCES = ["sample_text_history.txt"];
 
@@ -31,7 +34,8 @@ function HistoryPage() {
       .post("http://127.0.0.1:5000/api/v1/history/", data, headers)
       .then((response) => {
         setIsCurrentlyFetchingInformation(false);
-        console.log(response);
+        setSourceInformation(response.data);
+        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -44,13 +48,16 @@ function HistoryPage() {
       <div style={{ display: "flex" }}>
         <DropdownButton
           variant="secondary"
-          onSelect={handleSelect}
           title={selectedSource}
           style={{ marginInlineEnd: 10 }}
         >
           {HISTORY_SOURCES.map((item, index) => {
             return (
-              <Dropdown.Item key={index} eventKey={item}>
+              <Dropdown.Item
+                onSelect={handleSelect}
+                key={index}
+                eventKey={item}
+              >
                 {item}
               </Dropdown.Item>
             );
@@ -72,11 +79,36 @@ function HistoryPage() {
           )}
         </Button>
       </div>
-      {sourceInformation.summary && <HistoryContent />}
+      {sourceInformation.summary && (
+        <HistoryContent
+          summary={sourceInformation.summary}
+          timeline={sourceInformation.timeline}
+        />
+      )}
     </div>
   );
 }
 
-function HistoryContent() {}
+function HistoryContent({ summary, timeline }) {
+  console.log(timeline);
+  return (
+    <div style={{ whiteSpace: "pre-line" }}>
+      <h3>Summary</h3>
+      {summary}
+      <h3>Timeline</h3>
+      <Carousel variant="dark">
+        {timeline.map((event) => (
+          <Carousel.Item key={event.event}>
+            <img src={background} width={100} height={300} className=" w-100" />
+            <Carousel.Caption>
+              <h3 style={{ color: "blue" }}>{event.date}</h3>
+              <p>{event.event}</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </div>
+  );
+}
 
 export default HistoryPage;
