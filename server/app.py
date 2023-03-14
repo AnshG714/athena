@@ -1,9 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS
 from summarizer import Summarizer
 from timeline_extractor import TimelineExtractor
 import asyncio
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.get("/")
