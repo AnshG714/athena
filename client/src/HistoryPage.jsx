@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
 import Carousel from "react-bootstrap/Carousel";
-
+import QAModal from "./QAModal";
 import background from "./images/background.jpg";
 
 const HISTORY_SOURCES = ["sample_text_history.txt"];
@@ -46,6 +46,7 @@ function HistoryPage() {
   return (
     <div className="centeredDiv">
       <div style={{ display: "flex" }}>
+        {sourceInformation.summary && <QAModal subject={"history"} />}
         <DropdownButton
           variant="secondary"
           title={selectedSource}
