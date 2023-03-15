@@ -14,6 +14,14 @@ class EmbeddingManager:
         self.vector_dims = 1536
         self.distance_metric = "COSINE"
 
+    def is_index_initialized(self):
+        try:
+            self.redis_client.ft(self.index_name).info()
+            print("This index already exists")
+            return True
+        except:
+            return False
+
     def __initialize_redis_index(self, number_of_vectors):
         content = TextField(name="content")
         content_embeddings = VectorField(
@@ -28,10 +36,8 @@ class EmbeddingManager:
         )
 
         fields = [content, content_embeddings]
-        try:
-            self.redis_client.ft(self.index_name).info()
-            print("This index already exists")
-        except:
+
+        if not self.is_index_initialized():
             # Create RediSearch Index
             self.redis_client.ft(self.INDEX_NAME).create_index(
                 fields=fields,
@@ -66,6 +72,9 @@ class EmbeddingManager:
         hybrid_fields="*",
         k: int = 3,
     ):
+        if not self.is_index_initialized():
+            raise Exception("Can't call search without inititalizing indices first!")
+
         query_embedding = (
             await self.request_client.make_request(
                 {"input": user_query, "model": "text-embedding-ada-002"}
@@ -98,7 +107,6 @@ if __name__ == "__main__":
 
     redis = redis_client = Redis(host="localhost", port=6379, password="")
     embedding_manager = EmbeddingManager(redis, "history_embeddings")
-
     text = open("./sample_text_history.txt", "r")
     paragraphs = [r.replace("\n", " ") for r in text.read().split("\n\n")]
 
