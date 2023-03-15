@@ -3,8 +3,11 @@ from flask_cors import CORS
 from summarizer import Summarizer
 from timeline_extractor import TimelineExtractor
 import asyncio
+from redis import Redis
+
 
 app = Flask(__name__)
+redis_client = Redis(host="localhost", port=6379, password="")
 CORS(app)
 
 

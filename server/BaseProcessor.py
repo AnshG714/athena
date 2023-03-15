@@ -17,6 +17,9 @@ class BaseProcessor:
         self.token_encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
         self.request_client = OpenAIRequestClient()
 
+    def set_paragraphs(self, paragraphs):
+        self.__contexts = self.__group_paragraphs(paragraphs)
+
     def load_text_from_file(self, file_name):
         """
         Loads the contents `file_name` in-memory (assuming this is small enough to load into memory).

@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 
 
 class OpenAIRequestClient:
-    def __init__(self):
+    def __init__(self, endpoint="chat/completions"):
         load_dotenv()
-        self.request_url = "https://api.openai.com/v1/chat/completions"
+        self.request_url = "https://api.openai.com/v1/" + endpoint
 
     def __get_headers(self):
         return {
@@ -68,4 +68,8 @@ if __name__ == "__main__":
     }
 
     api = OpenAIRequestClient()
+    api2 = OpenAIRequestClient(endpoint="embeddings")
+
+    request3 = {"input": "test input", "model": "text-embedding-ada-002"}
     print(asyncio.run(api.make_concurrent_requests([request, request2])))
+    print(asyncio.run(api2.make_request(request3)))

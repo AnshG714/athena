@@ -14,6 +14,11 @@ class TimelineExtractor(BaseProcessor):
     def prompt(self):
         return prompts.GENERATE_TIMELINE
 
+    def __consolidate_timelines(self, timeline):
+        new_timeline = []
+        for timeline_event in timeline:
+            pass
+
     def process_results(self, results):
         timeline = []
         for response in results:
