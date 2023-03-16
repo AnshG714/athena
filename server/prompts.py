@@ -24,3 +24,11 @@ chemical_formula: The chemical formula for the molecule. Example: "CO2"
 molecular_structure: The molecular structure for the **same** molecule given in chemical_formula, represented as a **compact** JSON object. The molecular structure should have two keys: atoms and bonds. The atoms key should contain a list of dictionaries, where each dictionary represents an atom in the molecule and has two keys: element (the chemical element symbol) and position (a list of the 3D coordinates for the atom). The bonds key should contain a list of dictionaries, where each dictionary represents a bond between two atoms and has one key: atoms (a list of two integers representing the indices of the atoms in the atoms list). Make sure the chemical formula corresponds to the entries in this object - the number of entries should necessarily be equal to the number of atoms defined in the molecular formula. Example: {"atoms": [{"element": "C", "position": [0, 0, 0]}, {"element": "O", "position": [1.16, 0, 0]}, {"element": "O", "position": [-1.16, 0, 0]}], "bonds": [{"atoms": [0, 1]}, {"atoms": [0, 2]}]}
 Please make sure the JSON is valid and Python-decodeable. Ensure that all numbers are rounded to 2 decimal places. **Ignore all spaces, tabs, and newlines when returning the JSON**. If there are no molecules found in the text, return an empty list. If there are more than 2 key molecules found in the text, return only the first 2. Please make sure you are always returning factually correct information. **Always give completed, syntactically correct JSONs**. Make sure the positions of the atoms correspond to the right angles in the 3-dimensional molecular structure.
 """
+
+QUIZ = """ You are an educational assistant API responsible for designing multiple-choice quizzes. From the given text, design up to 3 questions that would be essential to know, in a multiple choice format.
+Return the result to me as a JSON list, where each JSON object represents a question and has the following fields:
+"question": The question being asked
+"options": A list of options, where there is only one right answer
+"answer": The index within the "options" list which is the right answer to this question. 
+It is your topmost priority to maintain factual accuracy. Return the answer as a JSON list, with the format described above. 
+"""

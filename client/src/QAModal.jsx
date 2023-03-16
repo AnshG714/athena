@@ -33,9 +33,7 @@ export default function QAModal({ subject }) {
       .post(constructUrl(), data, headers)
       .then((response) => {
         setIsCurrentlyFetching(false);
-        console.log(response.data.answer);
         setAnswer(response.data.answer);
-        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -88,7 +86,11 @@ export default function QAModal({ subject }) {
               {isCurrentlyFetching && (
                 <Spinner as="span" size="sm" animation="grow" />
               )}
-              {isCurrentlyFetching ? <span> Getting right back to you</span> : <span>Ask</span>}
+              {isCurrentlyFetching ? (
+                <span> Getting right back to you</span>
+              ) : (
+                <span>Ask</span>
+              )}
             </Button>
           </div>
           {answer && <p>{answer}</p>}

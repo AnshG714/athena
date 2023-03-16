@@ -8,7 +8,7 @@ from timeline_extractor import TimelineExtractor
 from embedding_manager import EmbeddingManager
 from user_query_answerer import UserQueryAnswerer
 from key_molecule_extractor import KeyMoleculeExtractor
-
+from quiz_generator import QuizGenerator
 
 app = Flask(__name__)
 redis_client = Redis(host="localhost", port=6379, password="")
@@ -44,17 +44,22 @@ async def gen_history_content():
     timeline_extractor = TimelineExtractor()
     timeline_extractor.set_paragraphs(paragraphs)
 
+    quiz_generator = QuizGenerator()
+    quiz_generator.set_paragraphs(paragraphs)
+
     results = await asyncio.gather(
         *[
             summarizer.get_results(),
             timeline_extractor.get_results(),
+            quiz_generator.get_results(),
             embedding_manager_history.load_embeddings(paragraphs),
         ]
     )
 
     summary = results[0]
     timeline = results[1]
-    return {"summary": summary, "timeline": timeline}
+    quiz = results[2]
+    return {"summary": summary, "timeline": timeline, "quiz": quiz}
 
 
 @app.post("/api/v1/<string:subject>/qa")
@@ -106,14 +111,20 @@ async def gen_chemistry_content():
     key_molecule_extractor = KeyMoleculeExtractor()
     key_molecule_extractor.set_paragraphs(paragraphs)
 
+    quiz_generator = QuizGenerator()
+    quiz_generator.set_paragraphs(paragraphs)
+
     results = await asyncio.gather(
         *[
             summarizer.get_results(),
             key_molecule_extractor.get_results(),
+            quiz_generator.get_results(),
             embedding_manager_chemistry.load_embeddings(paragraphs),
         ]
     )
 
     summary = results[0]
     timeline = results[1]
-    return {"summary": summary, "molecules": timeline}
+    quiz = results[2]
+
+    return {"summary": summary, "molecules": timeline, "quiz": quiz}
