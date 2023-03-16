@@ -25,5 +25,5 @@ class TimelineExtractor(BaseProcessor):
 
 if __name__ == "__main__":
     timeline_generator = TimelineExtractor()
-    timeline_generator.load_text_from_file("./sample_text_history.txt")
+    timeline_generator.load_text_from_file("./sample_text_chemistry.txt")
     print(asyncio.run(timeline_generator.get_results()))

@@ -1,0 +1,346 @@
+{
+  "molecules": [
+    {
+      "chemical_formula": "CH4",
+      "molecular_structure": {
+        "atoms": [
+          {
+            "element": "C",
+            "position": [0, 0, 0]
+          },
+          {
+            "element": "H",
+            "position": [1.2, 0, 0]
+          },
+          {
+            "element": "H",
+            "position": [0, 1.2, 0]
+          },
+          {
+            "element": "H",
+            "position": [0, -1.2, 0]
+          },
+          {
+            "element": "H",
+            "position": [-1.2, 0, 0]
+          }
+        ],
+        "bonds": [
+          {
+            "atoms": [0, 1]
+          },
+          {
+            "atoms": [0, 2]
+          },
+          {
+            "atoms": [0, 3]
+          },
+          {
+            "atoms": [0, 4]
+          }
+        ]
+      },
+      "molecule_name": "Methane"
+    },
+    {
+      "chemical_formula": "C2H6",
+      "molecular_structure": {
+        "atoms": [
+          {
+            "element": "C",
+            "position": [0, 0, 0]
+          },
+          {
+            "element": "C",
+            "position": [1.2, 0, 0]
+          },
+          {
+            "element": "H",
+            "position": [2.4, 0, 0]
+          },
+          {
+            "element": "H",
+            "position": [0.6, -1.04, 0]
+          },
+          {
+            "element": "H",
+            "position": [0.6, 1.04, 0]
+          },
+          {
+            "element": "H",
+            "position": [-0.6, -1.04, 0]
+          },
+          {
+            "element": "H",
+            "position": [-0.6, 1.04, 0]
+          },
+          {
+            "element": "H",
+            "position": [-1.2, 0, 0]
+          }
+        ],
+        "bonds": [
+          {
+            "atoms": [0, 1]
+          },
+          {
+            "atoms": [0, 2]
+          },
+          {
+            "atoms": [0, 3]
+          },
+          {
+            "atoms": [0, 4]
+          },
+          {
+            "atoms": [0, 5]
+          },
+          {
+            "atoms": [0, 6]
+          },
+          {
+            "atoms": [1, 2]
+          },
+          {
+            "atoms": [1, 7]
+          }
+        ]
+      },
+      "molecule_name": "Ethane"
+    },
+    {
+      "chemical_formula": "C4H8",
+      "molecular_structure": {
+        "atoms": [
+          {
+            "element": "C",
+            "position": [0.0, 0.0, 0.0]
+          },
+          {
+            "element": "C",
+            "position": [-1.16, 0.0, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [1.16, -0.95, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [-2.32, 0.0, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [-1.16, 0.95, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [0.0, -0.95, 0.0]
+          }
+        ],
+        "bonds": [
+          {
+            "atoms": [0, 1]
+          },
+          {
+            "atoms": [0, 2]
+          },
+          {
+            "atoms": [0, 5]
+          },
+          {
+            "atoms": [0, 4]
+          },
+          {
+            "atoms": [1, 3]
+          },
+          {
+            "atoms": [1, 5]
+          }
+        ]
+      },
+      "molecule_name": "1-Butene"
+    },
+    {
+      "chemical_formula": "C4H8",
+      "molecular_structure": {
+        "atoms": [
+          {
+            "element": "C",
+            "position": [0.0, 0.0, 0.0]
+          },
+          {
+            "element": "C",
+            "position": [1.16, 0.0, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [0.0, 0.95, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [-1.16, 0.95, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [-1.16, -0.95, 0.0]
+          },
+          {
+            "element": "H",
+            "position": [1.16, -0.95, 0.0]
+          }
+        ],
+        "bonds": [
+          {
+            "atoms": [0, 1]
+          },
+          {
+            "atoms": [0, 2]
+          },
+          {
+            "atoms": [0, 3]
+          },
+          {
+            "atoms": [0, 4]
+          },
+          {
+            "atoms": [1, 5]
+          },
+          {
+            "atoms": [1, 4]
+          }
+        ]
+      },
+      "molecule_name": "2-Butene"
+    },
+    {
+      "chemical_formula": "CH3COOH",
+      "molecular_structure": {
+        "atoms": [
+          {
+            "element": "C",
+            "position": [0, 0, 0]
+          },
+          {
+            "element": "H",
+            "position": [-1.14, 0, 0.71]
+          },
+          {
+            "element": "H",
+            "position": [1.17, 0, 0.61]
+          },
+          {
+            "element": "H",
+            "position": [-1.14, 0, -0.71]
+          },
+          {
+            "element": "O",
+            "position": [1.17, 0, -0.62]
+          },
+          {
+            "element": "O",
+            "position": [0, -1.53, 0]
+          }
+        ],
+        "bonds": [
+          {
+            "atoms": [0, 1]
+          },
+          {
+            "atoms": [0, 2]
+          },
+          {
+            "atoms": [0, 3]
+          },
+          {
+            "atoms": [2, 4]
+          },
+          {
+            "atoms": [1, 5]
+          },
+          {
+            "atoms": [3, 5]
+          }
+        ]
+      },
+      "molecule_name": "Acetic Acid"
+    },
+    {
+      "chemical_formula": "CH3CO2CH2CH3",
+      "molecular_structure": {
+        "atoms": [
+          {
+            "element": "C",
+            "position": [0, 0, 0]
+          },
+          {
+            "element": "H",
+            "position": [-1.51, 0, 0.89]
+          },
+          {
+            "element": "H",
+            "position": [1.51, 0, 0.89]
+          },
+          {
+            "element": "H",
+            "position": [-1.51, 0, -0.89]
+          },
+          {
+            "element": "O",
+            "position": [0, 1.15, 0]
+          },
+          {
+            "element": "O",
+            "position": [1.86, -0.61, 0]
+          },
+          {
+            "element": "C",
+            "position": [-1.86, -0.61, 0]
+          },
+          {
+            "element": "H",
+            "position": [-2.71, -0.61, 0]
+          },
+          {
+            "element": "H",
+            "position": [1.52, -1.71, 0]
+          },
+          {
+            "element": "H",
+            "position": [0, -1.71, 0]
+          }
+        ],
+        "bonds": [
+          {
+            "atoms": [0, 1]
+          },
+          {
+            "atoms": [0, 2]
+          },
+          {
+            "atoms": [0, 3]
+          },
+          {
+            "atoms": [3, 5]
+          },
+          {
+            "atoms": [0, 4]
+          },
+          {
+            "atoms": [5, 6]
+          },
+          {
+            "atoms": [6, 7]
+          },
+          {
+            "atoms": [2, 8]
+          },
+          {
+            "atoms": [1, 9]
+          }
+        ]
+      },
+      "molecule_name": "Ethyl Acetate"
+    }
+  ],
+  "summary": " Carbon-based life is found throughout all living organisms, and early chemists theorized that organic compounds could only be found in nature and not synthetically created. In 1828, the German chemist Friedrich Wohler disproved this theory and showed that organic compounds could be synthesized. Organic compounds, defined by the presence of carbon, can be found in plastics, soaps, fabrics, and other everyday items. Alkanes, or saturated hydrocarbons, have a formula of CnH2n+2 and have a zigzag shaped structure because of the sp3 hybridization of the bonds. Structural isomers have the same molecular formula but different spatial arrangements of atoms, like n-butane and 2-methylpropane. The international Union of Pure and Applied Chemistry (IUPAC) has developed a system of nomenclature that is used to name organic compounds, like alkyl groups generated from the alkanes. Alkyl groups are named by dropping the suffix -ane and adding -yl.\n\n Alkanes contain hydrogen and carbon atoms; they burn in the presence of oxygen, producing carbon dioxide and water, making them excellent fuels. Unsaturated hydrocarbons contain double or triple bonds between carbon atoms, giving rise to functional groups that impart specific chemical reactivity. Alkenes are unsaturated hydrocarbons containing one or more double bonds; two different alkyl groups can be formed depending on which hydrogen atom is removed. Alkynes contain one or more triple bonds; they react more readily than alkenes and with twice as much reagent. Aromatic hydrocarbons, such as benzene, C6H6, contain ring structures and exhibit bonding that must be described using resonance hybrid concept of valence bond theory.\n\n Valence bond theory states that in benzene and other planar aromatic hydrocarbon molecules, the sp2 hybrid orbitals of each carbon atom and the valence electron of each hydrogen atom form the σ bonds. π bonds form when each carbon's fourth valence electron is shared with an adjacent carbon atom in the unhybridized p orbitals. In derivatives of benzene, the hydrogen atoms can be replaced with various substituents, and the molecule more easily undergoes substitution reactions than addition reactions. Alcohols are derivatives of hydrocarbons where an -OH group has replaced a hydrogen atom, and are covalent molecules rather than bases. Ethers are molecules that contain the -O- functional group and can be obtained through the elimination of a molecule of water from two molecules of an alcohol. Aldehydes contain a carbonyl group attached to at least one hydrogen atom, while ketones have the carbonyl group bonded to two carbon atoms. In both, the carbon atom is sp2 hybridized and the shared electrons of its polar C=O bond are drawn toward the oxygen atom. Reactions with aldehydes and ketones start with the reaction between a Lewis base and the carbon atom of the carbonyl group and end with one or more structural rearrangements. Physical processes like oxidation and reduction changes the carbon atom's polarity, assigning the oxygen atom an oxidation number of -2 and the hydrogen an oxidation number of +1.\n\n Aldehydes and ketones are both organic carbon compounds with a carbonyl group bonded to two other carbon atoms. Aldehydes are prepared by oxidation of an alcohol whose -OH functional group is located on the end of the carbon atom chain; ketones require an -OH group in the middle of the chain. Formaldehyde is an aldehyde with the formula HCHO, used to preserv tissue, embalm bodies and sterilize material. Dimethyl ketone, CH3COCH3, commonly known as acetone, is the simplest ketone and is used as a solvent in over lacquer, cellulose acetate, plastics, and pharmaceuticals. Carboxylic acids have a carbonyl group and hydrogen atom, form a weak acid and are prepared by oxidation of aldehydes or alcohols. Esters, formed by the reaction of an acid with an alcohol, have charactersistics lower vapor pressure and can have aromas and flavors. Amines have nitrogen with a lone pair of electrons and three bonds to hydrogen or carbon and are weak bases. Amides can be produced when carboxylic acids react with amines and biologically most important for forming proteins."
+}

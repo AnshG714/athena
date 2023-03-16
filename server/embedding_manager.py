@@ -39,7 +39,7 @@ class EmbeddingManager:
 
         if not self.is_index_initialized():
             # Create RediSearch Index
-            self.redis_client.ft(self.INDEX_NAME).create_index(
+            self.redis_client.ft(self.index_name).create_index(
                 fields=fields,
                 definition=IndexDefinition(index_type=IndexType.HASH),
             )

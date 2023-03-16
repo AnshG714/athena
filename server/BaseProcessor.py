@@ -6,7 +6,7 @@ import tiktoken
 
 
 class BaseProcessor:
-    def __init__(self, max_chunk_tokens=2000):
+    def __init__(self, max_chunk_tokens=2000, endpoint="chat/completions"):
         """
         Initializes the base processor instance.
         ### Params
@@ -15,7 +15,8 @@ class BaseProcessor:
         """
         self.max_chunk_tokens = max_chunk_tokens
         self.token_encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
-        self.request_client = OpenAIRequestClient()
+        self.endpoint = endpoint
+        self.request_client = OpenAIRequestClient(endpoint=endpoint)
 
     def set_paragraphs(self, paragraphs):
         self.__contexts = self.__group_paragraphs(paragraphs)
@@ -62,18 +63,27 @@ class BaseProcessor:
 
         requests = []
         for context in self.__contexts:
-            requests.append(
-                {
-                    "model": "gpt-3.5-turbo",
-                    "messages": [
-                        {
-                            "role": "system",
-                            "content": self.prompt(),
-                        },
-                        {"role": "user", "content": context},
-                    ],
-                }
-            )
+            if self.endpoint == "chat/completions":
+                requests.append(
+                    {
+                        "model": "gpt-3.5-turbo",
+                        "messages": [
+                            {
+                                "role": "system",
+                                "content": self.prompt(),
+                            },
+                            {"role": "user", "content": context},
+                        ],
+                    }
+                )
+            else:
+                requests.append(
+                    {
+                        "model": "text-davinci-003",
+                        "prompt": self.prompt() + "\n" + context + "\n" + "Response:",
+                        "max_tokens": 2000,
+                    }
+                )
 
         raw_results = await self.request_client.make_concurrent_requests(requests)
         return self.process_results(raw_results)

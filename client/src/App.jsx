@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import HistoryPage from "./HistoryPage";
+import ChemistryPage from "./ChemistryPage";
 
 const SUBJECTS = ["History", "Chemistry", "Computer Science"];
 
@@ -46,7 +47,7 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/computer-science" element={<div>CS page</div>} />
-        <Route path="/chemistry" element={<div>Chemistry page</div>} />
+        <Route path="/chemistry" element={<ChemistryPage />} />
       </Routes>
     </BrowserRouter>
   );
