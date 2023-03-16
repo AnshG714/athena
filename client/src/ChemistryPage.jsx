@@ -10,17 +10,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import MoleculeCard from "./MoleculeCard";
 
-const CHEMISTRY_SOURCES = ["sample_text_chemistry.txt"];
+const CHEMISTRY_SOURCES = [
+  "sample_text_chemistry.txt",
+  "sample_text_chemistry_2.txt",
+];
 
 function ChemistryPage() {
   const [selectedSource, setSelectedSource] = useState(CHEMISTRY_SOURCES[0]);
   const [sourceInformation, setSourceInformation] = useState({});
   const [isCurrentlyFetchingInformation, setIsCurrentlyFetchingInformation] =
     useState(false);
-
-  const handleSelect = (_, event) => {
-    setSelectedSource(event.target.value);
-  };
 
   const fetchData = () => {
     const data = {
@@ -57,7 +56,7 @@ function ChemistryPage() {
           {CHEMISTRY_SOURCES.map((item, index) => {
             return (
               <Dropdown.Item
-                onSelect={handleSelect}
+                onClick={() => setSelectedSource(item)}
                 key={index}
                 eventKey={item}
               >

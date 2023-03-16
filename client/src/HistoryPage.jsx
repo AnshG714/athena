@@ -16,10 +16,6 @@ function HistoryPage() {
   const [isCurrentlyFetchingInformation, setIsCurrentlyFetchingInformation] =
     useState(false);
 
-  const handleSelect = (_, event) => {
-    setSelectedSource(event.target.value);
-  };
-
   const fetchData = () => {
     const data = {
       source: selectedSource,
@@ -55,7 +51,7 @@ function HistoryPage() {
           {HISTORY_SOURCES.map((item, index) => {
             return (
               <Dropdown.Item
-                onSelect={handleSelect}
+                onSelect={() => setSelectedSource(item)}
                 key={index}
                 eventKey={item}
               >
