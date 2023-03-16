@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
 import QAModal from "./QAModal";
-import CarbonDioxide from "./CarbonDioxide";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -109,10 +108,6 @@ function ChemistryContent({ summary, molecules }) {
           <div style={{ whiteSpace: "pre-line" }}>
             <h3>Summary</h3>
             {summary}
-            <h3>Molecules</h3>
-            <div className="centeredDiv">
-              <CarbonDioxide />
-            </div>
           </div>
         </Col>
       </Row>

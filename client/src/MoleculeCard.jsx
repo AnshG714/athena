@@ -22,7 +22,9 @@ function MoleculeCard({ molecule }) {
             {constructChemicalFormula(molecule.chemical_formula)}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body><MoleculeRenderer moleculeJSON={molecule.molecular_structure} /></Modal.Body>
+        <Modal.Body>
+          <MoleculeRenderer moleculeJSON={molecule.molecular_structure} />
+        </Modal.Body>
       </Modal>
       <div className="MoleculeCard" onClick={onShow}>
         <h4 align="center">{molecule.molecule_name}</h4>
