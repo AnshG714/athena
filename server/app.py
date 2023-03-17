@@ -11,7 +11,7 @@ from key_molecule_extractor import KeyMoleculeExtractor
 from quiz_generator import QuizGenerator
 
 app = Flask(__name__)
-redis_client = Redis(host="localhost", port=6379, password="")
+redis_client = Redis(host="redis", port=6379, password="")
 CORS(app)
 
 # Pre-emptively create embedding managers for now. Need to change this up later.
@@ -128,3 +128,7 @@ async def gen_chemistry_content():
     quiz = results[2]
 
     return {"summary": summary, "molecules": timeline, "quiz": quiz}
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
