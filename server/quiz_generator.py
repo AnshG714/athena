@@ -15,7 +15,7 @@ class QuizGenerator(BaseProcessor):
         contents = []
         for response in results:
             try:
-                contents.append(json.loads(response["choices"][0]["text"]))
+                contents += json.loads(response["choices"][0]["text"])
             except Exception as e:
                 print(e)
                 print("response: ", response)

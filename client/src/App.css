@@ -30,3 +30,8 @@
   transform: scale(1.1);
   cursor: pointer;
 }
+
+.QuizButton {
+  border-radius: 30px;
+  margin-right: 10px;
+}

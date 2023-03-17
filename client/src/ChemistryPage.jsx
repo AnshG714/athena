@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import MoleculeCard from "./MoleculeCard";
+import QuizModal from "./QuizModal";
 
 const CHEMISTRY_SOURCES = [
   "sample_text_chemistry.txt",
@@ -48,6 +49,9 @@ function ChemistryPage() {
     <div className="centeredDiv">
       <div style={{ display: "flex" }}>
         {sourceInformation.summary && <QAModal subject={"chemistry"} />}
+        {sourceInformation.summary && (
+          <QuizModal quiz={sourceInformation.quiz} />
+        )}
         <DropdownButton
           variant="secondary"
           title={selectedSource}
